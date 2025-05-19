@@ -25,14 +25,16 @@ func CompilePOST(c *gin.Context) {
 		return
 	}
 
-	foundCompiler := false
+	var foundCompiler models.Compiler
+	foundCompilerBool := false
 	for _, item := range foundLanguage[0].Compilers {
 		if item.DockerImageName == compiler {
-			foundCompiler = true
+			foundCompiler = item
+			foundCompilerBool = true
 			break
 		}
 	}
-	if !foundCompiler {
+	if !foundCompilerBool {
 		c.String(http.StatusBadRequest, "Form error: wrong compiler")
 		return
 	}
@@ -72,7 +74,14 @@ func CompilePOST(c *gin.Context) {
 		return
 	}
 
+	var compile models.Compile
+	compile.Stdin = ""
+	compile.Compiler = foundCompiler
+
 	if stderr != nil {
+		compile.Stderr = stderr.Error()
+		compile.Stdout = ""
+		initialize.DB.Create(&compile)
 		c.JSON(http.StatusOK, gin.H{
 			"stdout": nil,
 			"stderr": stderr.Error(),
@@ -80,6 +89,10 @@ func CompilePOST(c *gin.Context) {
 		return
 	}
 
+	compile.Compiler = foundCompiler
+	compile.Stderr = ""
+	compile.Stdout = stdout
+	initialize.DB.Create(&compile)
 	c.JSON(http.StatusOK, gin.H{
 		"stdout": stdout,
 		"stderr": nil,
