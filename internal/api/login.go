@@ -15,7 +15,6 @@ import (
 )
 
 func Login(c *gin.Context) {
-	c.SetCookie("Authorization", "", -1, "/", "localhost", false, true)
 	var crds struct {
 		Email    string `binding:"required" json:"email"`
 		Password string `binding:"required" json:"password"`
@@ -26,6 +25,7 @@ func Login(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"message": "bad request",
 		})
+		c.SetCookie("Authorization", "", -1, "/", "localhost", false, true)
 		return
 	}
 
@@ -38,12 +38,14 @@ func Login(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"message": "internal server error",
 		})
+		c.SetCookie("Authorization", "", -1, "/", "localhost", false, true)
 		return
 	}
 	if len(users) == 0 {
 		c.JSON(http.StatusUnauthorized, gin.H{
 			"message": "wrong email or password",
 		})
+		c.SetCookie("Authorization", "", -1, "/", "localhost", false, true)
 		return
 	}
 
@@ -52,6 +54,7 @@ func Login(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"message": "unable to generate JWT",
 		})
+		c.SetCookie("Authorization", "", -1, "/", "localhost", false, true)
 		return
 	}
 
@@ -61,6 +64,7 @@ func Login(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"message": "unable to set cache to redis",
 		})
+		c.SetCookie("Authorization", "", -1, "/", "localhost", false, true)
 		return
 	}
 

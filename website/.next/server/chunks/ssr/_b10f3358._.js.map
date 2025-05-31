@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 6, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
+    {"offset": {"line": 30, "column": 0}, "map": {"version":3,"sources":["file:///Users/edelweiss/Projects/go/src/github.com/edelwei88/bytebuild-go/website/src/app/app/%28manager%29/users/page.tsx"],"sourcesContent":["export default async function Page() {\n  const cookiesStore = await cookies();\n  const Authorization = cookiesStore.get('Authorization');\n  const res = await fetch('http://localhost:3001/users', {\n    method: 'get',\n    headers: {\n      Cookie: `${Authorization?.name}=${Authorization?.value}`,\n    },\n  });\n\n  <div className='mx-auto my-5 max-w-7/9 text-white'>\n    <DataTable columns={userCompilesColumns} data={json.compiles} />\n  </div>;\n}\n"],"names":[],"mappings":";;;;;AAAe,eAAe;IAC5B,MAAM,eAAe,MAAM;IAC3B,MAAM,gBAAgB,aAAa,GAAG,CAAC;IACvC,MAAM,MAAM,MAAM,MAAM,+BAA+B;QACrD,QAAQ;QACR,SAAS;YACP,QAAQ,GAAG,eAAe,KAAK,CAAC,EAAE,eAAe,OAAO;QAC1D;IACF;kBAEA,6WAAC;QAAI,WAAU;kBACb,cAAA,6WAAC;YAAU,SAAS;YAAqB,MAAM,KAAK,QAAQ;;;;;;;;;;;AAEhE","debugId":null}}]
+}

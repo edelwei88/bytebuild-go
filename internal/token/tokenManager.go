@@ -44,7 +44,7 @@ func GetUserByJWT(tokenString string) (models.User, error) {
 			return user, errors.New("token expired")
 		}
 
-		postgres.Postgres.Preload(clause.Associations).First(&user, claims["sub"])
+		postgres.Postgres.Preload("Compiles.Compiler").Preload(clause.Associations).First(&user, claims["sub"])
 		if user.ID == 0 {
 			return user, errors.New("user not found")
 		}

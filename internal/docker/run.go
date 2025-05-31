@@ -92,8 +92,11 @@ func CompileAndExecute(imageName string, fileExt string, cmd string, sourceCode 
 	}
 
 	result.ExitCode = inspect.ExitCode
-	result.Stdout = stdout.String()
-	result.Stderr = stderr.String()
+	if result.ExitCode != 0 {
+		result.Stderr = stdout.String()
+	} else {
+		result.Stdout = stdout.String()
+	}
 
 	return result, nil
 }

@@ -25,3 +25,8 @@ func GetCache(key string) (string, error) {
 
 	return value, nil
 }
+
+func DeleteCache(key string) {
+	ctx := context.Background()
+	Redis.Del(ctx, key)
+}

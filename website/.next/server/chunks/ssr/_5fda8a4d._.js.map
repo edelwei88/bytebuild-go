@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 6, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
+    {"offset": {"line": 30, "column": 0}, "map": {"version":3,"sources":["file:///Users/edelweiss/Projects/go/src/github.com/edelwei88/bytebuild-go/website/src/app/app/compile/%5Bid%5D/page.tsx"],"sourcesContent":["export default async function Page({\n  params,\n}: {\n  params: Promise<{ id: string }>;\n}) {\n  const result = await params;\n  return <div>{result.id.toString()}</div>;\n}\n"],"names":[],"mappings":";;;;;AAAe,eAAe,KAAK,EACjC,MAAM,EAGP;IACC,MAAM,SAAS,MAAM;IACrB,qBAAO,6WAAC;kBAAK,OAAO,EAAE,CAAC,QAAQ;;;;;;AACjC","debugId":null}}]
+}

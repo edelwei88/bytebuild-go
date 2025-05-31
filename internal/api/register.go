@@ -15,7 +15,6 @@ import (
 )
 
 func Register(c *gin.Context) {
-	c.SetCookie("Authorization", "", -1, "/", "localhost", false, true)
 	var crds struct {
 		Username string `binding:"required" json:"username"`
 		Email    string `binding:"required" json:"email"`
@@ -27,6 +26,7 @@ func Register(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"message": "user not found",
 		})
+		c.SetCookie("Authorization", "", -1, "/", "localhost", false, true)
 		return
 	}
 
@@ -38,12 +38,14 @@ func Register(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"message": "internal server error",
 		})
+		c.SetCookie("Authorization", "", -1, "/", "localhost", false, true)
 		return
 	}
 	if len(users) != 0 {
 		c.JSON(http.StatusUnauthorized, gin.H{
 			"message": "this email is already used",
 		})
+		c.SetCookie("Authorization", "", -1, "/", "localhost", false, true)
 		return
 	}
 
@@ -55,6 +57,7 @@ func Register(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"message": "failed to get role user",
 		})
+		c.SetCookie("Authorization", "", -1, "/", "localhost", false, true)
 		return
 	}
 
@@ -70,6 +73,7 @@ func Register(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"message": "failed to create DB row",
 		})
+		c.SetCookie("Authorization", "", -1, "/", "localhost", false, true)
 		return
 	}
 
@@ -78,6 +82,7 @@ func Register(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"message": "unable to generate JWT",
 		})
+		c.SetCookie("Authorization", "", -1, "/", "localhost", false, true)
 		return
 	}
 
@@ -87,6 +92,7 @@ func Register(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"message": "unable to set cache to redis",
 		})
+		c.SetCookie("Authorization", "", -1, "/", "localhost", false, true)
 		return
 	}
 

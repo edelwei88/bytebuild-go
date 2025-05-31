@@ -1,0 +1,55 @@
+{
+  "app": {
+    "[project]/src/app/(with-header)/landing/page": [
+      "static/media/KFOjCneDtsqEr0keqCMhbCc6CsTYl4BO-s.p.147eaffb.woff2",
+      "static/media/pxiKyp0ihIEF2isfFJXUdVNF-s.p.ebb55f42.woff2"
+    ],
+    "[project]/src/app/(with-header)/login/page": [
+      "static/media/KFOjCneDtsqEr0keqCMhbCc6CsTYl4BO-s.p.147eaffb.woff2",
+      "static/media/pxiKyp0ihIEF2isfFJXUdVNF-s.p.ebb55f42.woff2"
+    ],
+    "[project]/src/app/(with-header)/register/page": [
+      "static/media/KFOjCneDtsqEr0keqCMhbCc6CsTYl4BO-s.p.147eaffb.woff2",
+      "static/media/pxiKyp0ihIEF2isfFJXUdVNF-s.p.ebb55f42.woff2"
+    ],
+    "[project]/src/app/_not-found/page": [
+      "static/media/KFOjCneDtsqEr0keqCMhbCc6CsTYl4BO-s.p.147eaffb.woff2",
+      "static/media/pxiKyp0ihIEF2isfFJXUdVNF-s.p.ebb55f42.woff2"
+    ],
+    "[project]/src/app/app/(manager)/compilers/page": [
+      "static/media/KFOjCneDtsqEr0keqCMhbCc6CsTYl4BO-s.p.147eaffb.woff2",
+      "static/media/pxiKyp0ihIEF2isfFJXUdVNF-s.p.ebb55f42.woff2"
+    ],
+    "[project]/src/app/app/(manager)/compiles/page": [
+      "static/media/KFOjCneDtsqEr0keqCMhbCc6CsTYl4BO-s.p.147eaffb.woff2",
+      "static/media/pxiKyp0ihIEF2isfFJXUdVNF-s.p.ebb55f42.woff2"
+    ],
+    "[project]/src/app/app/(manager)/users/[id]/page": [
+      "static/media/KFOjCneDtsqEr0keqCMhbCc6CsTYl4BO-s.p.147eaffb.woff2",
+      "static/media/pxiKyp0ihIEF2isfFJXUdVNF-s.p.ebb55f42.woff2"
+    ],
+    "[project]/src/app/app/(manager)/users/page": [
+      "static/media/KFOjCneDtsqEr0keqCMhbCc6CsTYl4BO-s.p.147eaffb.woff2",
+      "static/media/pxiKyp0ihIEF2isfFJXUdVNF-s.p.ebb55f42.woff2"
+    ],
+    "[project]/src/app/app/compile/[id]/page": [
+      "static/media/KFOjCneDtsqEr0keqCMhbCc6CsTYl4BO-s.p.147eaffb.woff2",
+      "static/media/pxiKyp0ihIEF2isfFJXUdVNF-s.p.ebb55f42.woff2"
+    ],
+    "[project]/src/app/app/compile/page": [
+      "static/media/KFOjCneDtsqEr0keqCMhbCc6CsTYl4BO-s.p.147eaffb.woff2",
+      "static/media/pxiKyp0ihIEF2isfFJXUdVNF-s.p.ebb55f42.woff2"
+    ],
+    "[project]/src/app/app/me/page": [
+      "static/media/KFOjCneDtsqEr0keqCMhbCc6CsTYl4BO-s.p.147eaffb.woff2",
+      "static/media/pxiKyp0ihIEF2isfFJXUdVNF-s.p.ebb55f42.woff2"
+    ],
+    "[project]/src/app/app/mycompiles/page": [
+      "static/media/KFOjCneDtsqEr0keqCMhbCc6CsTYl4BO-s.p.147eaffb.woff2",
+      "static/media/pxiKyp0ihIEF2isfFJXUdVNF-s.p.ebb55f42.woff2"
+    ]
+  },
+  "appUsingSizeAdjust": true,
+  "pages": {},
+  "pagesUsingSizeAdjust": false
+}

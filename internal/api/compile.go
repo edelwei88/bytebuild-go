@@ -58,10 +58,37 @@ func Compile(c *gin.Context) {
 		result, err = compile.C(compiler.DockerImageName, language.FileExtension, opts.SourceCode, opts.Args)
 	case "Lua":
 		result, err = compile.Lua(compiler.DockerImageName, language.FileExtension, opts.SourceCode, opts.Args)
+	case "JavaScript":
+		result, err = compile.JavaScript(compiler.DockerImageName, language.FileExtension, opts.SourceCode, opts.Args)
+	default:
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"message": "failed to compile",
+		})
+		return
 	}
+
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"message": "failed to compile",
+		})
+		return
+	}
+
+	user, _ := c.Get("user")
+	compile := models.Compile{
+		Compiler:   compiler,
+		User:       user.(models.User),
+		Arg:        opts.Args,
+		ExitCode:   result.ExitCode,
+		SourceCode: opts.SourceCode,
+		Stdout:     result.Stdout,
+		Stderr:     result.Stderr,
+	}
+
+	status := postgres.Postgres.Create(&compile)
+	if status.Error != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"message": "failed to create compile",
 		})
 		return
 	}

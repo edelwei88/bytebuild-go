@@ -67,3 +67,18 @@ func Lua(imageName string, fileExtension string, sourceCode string, args string)
 
 	return result, nil
 }
+
+func JavaScript(imageName string, fileExtension string, sourceCode string, args string) (types.ExecResult, error) {
+	cmd := fmt.Sprintf("node source.js %s", args)
+
+	result, err := docker.CompileAndExecute(
+		imageName,
+		fileExtension,
+		cmd,
+		sourceCode)
+	if err != nil {
+		return types.ExecResult{}, errors.New("failed to compile")
+	}
+
+	return result, nil
+}

@@ -5,4 +5,5 @@ type Language struct {
 	Name          string     `json:"name" gorm:"not null"`
 	FileExtension string     `json:"file_extension" gorm:"not null"`
 	Compilers     []Compiler `json:"compilers" gorm:"constraint:OnDelete:CASCADE"`
+	MonacoName    string     `json:"monaco_name"`
 }

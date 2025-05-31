@@ -1,0 +1,15 @@
+{
+  "/(with-header)/landing/page": "app/(with-header)/landing/page.js",
+  "/(with-header)/login/page": "app/(with-header)/login/page.js",
+  "/(with-header)/register/page": "app/(with-header)/register/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/app/(manager)/compilers/page": "app/app/(manager)/compilers/page.js",
+  "/app/(manager)/compiles/page": "app/app/(manager)/compiles/page.js",
+  "/app/(manager)/users/[id]/page": "app/app/(manager)/users/[id]/page.js",
+  "/app/(manager)/users/page": "app/app/(manager)/users/page.js",
+  "/app/compile/[id]/page": "app/app/compile/[id]/page.js",
+  "/app/compile/page": "app/app/compile/page.js",
+  "/app/me/page": "app/app/me/page.js",
+  "/app/mycompiles/page": "app/app/mycompiles/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js"
+}
