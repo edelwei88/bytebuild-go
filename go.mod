@@ -3,6 +3,7 @@ module github.com/edelwei88/bytebuild-go
 go 1.24.3
 
 require (
+	github.com/MatusOllah/stripansi v1.1.0 // indirect
 	github.com/Microsoft/go-winio v0.6.2 // indirect
 	github.com/bytedance/sonic v1.13.2 // indirect
 	github.com/bytedance/sonic/loader v0.2.4 // indirect

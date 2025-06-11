@@ -8,4 +8,6 @@ export interface Compile {
   source_code: string;
   stdout: string;
   stderr: string;
+  compile_date: Date;
+  user_id: number;
 }

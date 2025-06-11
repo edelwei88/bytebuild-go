@@ -12,14 +12,14 @@ export const compilersColumns: ColumnDef<{
   },
   {
     accessorKey: 'docker_image_name',
-    header: 'Docker image name',
+    header: 'Название образа Docker',
   },
   {
     accessorKey: 'language',
-    header: 'Language',
+    header: 'Язык',
   },
   {
     accessorKey: 'file_extension',
-    header: 'File extension',
+    header: 'Расширение файла',
   },
 ];

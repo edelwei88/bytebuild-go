@@ -350,7 +350,7 @@ function LoginForm() {
             "LoginForm.useForm[form]": ({ value })=>{
                 async function Login() {
                     try {
-                        const res = await fetch('http://localhost:3001/login', {
+                        const res = await fetch('http://localhost:3001/auth/login', {
                             headers: {
                                 'Content-Type': 'application/json'
                             },

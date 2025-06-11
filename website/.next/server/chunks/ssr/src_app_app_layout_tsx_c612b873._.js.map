@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["file:///Users/edelweiss/Projects/go/src/github.com/edelwei88/bytebuild-go/website/src/app/app/layout.tsx"],"sourcesContent":["export default function RootLayout({\n  children,\n}: Readonly<{\n  children: React.ReactNode;\n}>) {\n  return (\n    <div>\n      <div>{children}</div>\n    </div>\n  );\n}\n"],"names":[],"mappings":";;;;;AAAe,SAAS,WAAW,EACjC,QAAQ,EAGR;IACA,qBACE,6WAAC;kBACC,cAAA,6WAAC;sBAAK;;;;;;;;;;;AAGZ","debugId":null}}]
-}

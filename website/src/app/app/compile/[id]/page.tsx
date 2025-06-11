@@ -10,12 +10,18 @@ export default async function Page({
 }) {
   const result = await params;
 
-  const resLangs = await fetch('http://localhost:3001/langs');
-  const jsonLangs: Language[] = await resLangs.json();
-
   const cookiesStore = await cookies();
   const Authorization = cookiesStore.get('Authorization');
-  const res = await fetch('http://localhost:3001/auth', {
+
+  const resLangs = await fetch('http://localhost:3001/user/langs', {
+    method: 'get',
+    headers: {
+      Cookie: `${Authorization?.name}=${Authorization?.value}`,
+    },
+  });
+  const jsonLangs: Language[] = await resLangs.json();
+
+  const res = await fetch('http://localhost:3001/user/me', {
     method: 'get',
     headers: {
       Cookie: `${Authorization?.name}=${Authorization?.value}`,

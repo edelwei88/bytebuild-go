@@ -36,15 +36,21 @@ export function AppSidebar({
   const managerMenuItems = [
     {
       name: 'Список пользователей',
-      href: '/app/users',
+      href: '/app/manager/users',
     },
     {
       name: 'Список компиляторов',
-      href: '/app/compilers',
+      href: '/app/manager/compilers',
     },
     {
       name: 'Список компиляций',
-      href: '/app/compiles',
+      href: '/app/manager/compiles',
+    },
+  ];
+  const adminMenuItems = [
+    {
+      name: 'Редактирование пользователей',
+      href: '/app/admin/edit/users',
     },
   ];
 
@@ -76,11 +82,19 @@ export function AppSidebar({
             <SidebarNav items={userMenuItems} />
           </SidebarGroupContent>
         </SidebarGroup>
-        {user.role.name === 'manager' && (
+        {['manager', 'admin'].includes(user.role.name) && (
           <SidebarGroup>
             <SidebarGroupLabel>Администрирование</SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarNav items={managerMenuItems} />
+            </SidebarGroupContent>
+          </SidebarGroup>
+        )}
+        {user.role.name === 'admin' && (
+          <SidebarGroup>
+            <SidebarGroupLabel>Редактирование</SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarNav items={adminMenuItems} />
             </SidebarGroupContent>
           </SidebarGroup>
         )}

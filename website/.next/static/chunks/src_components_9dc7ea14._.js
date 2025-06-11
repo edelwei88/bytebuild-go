@@ -310,11 +310,11 @@ const userCompilesColumns = [
     },
     {
         accessorKey: 'compiler.docker_image_name',
-        header: 'Compiler'
+        header: 'Компилятор'
     },
     {
         accessorKey: 'source_code',
-        header: 'Source code',
+        header: 'Исходный код',
         cell: ({ cell })=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$3$2e$3_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "text-wrap",
                 children: cell.renderValue()
@@ -326,15 +326,15 @@ const userCompilesColumns = [
     },
     {
         accessorKey: 'args',
-        header: 'Args'
+        header: 'Аргументы'
     },
     {
         accessorKey: 'exit_code',
-        header: 'Exit code'
+        header: 'Код возврата'
     },
     {
         accessorKey: 'stdout',
-        header: 'Stdout',
+        header: 'Стандартный вывод',
         cell: ({ cell })=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$3$2e$3_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "text-wrap",
                 children: cell.renderValue()
@@ -346,7 +346,7 @@ const userCompilesColumns = [
     },
     {
         accessorKey: 'stderr',
-        header: 'Stderr',
+        header: 'Стандартный вывод ошибки',
         cell: ({ cell })=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$3$2e$3_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "text-wrap",
                 children: cell.renderValue()
@@ -355,6 +355,23 @@ const userCompilesColumns = [
                 lineNumber: 41,
                 columnNumber: 7
             }, this)
+    },
+    {
+        accessorKey: 'compile_time',
+        header: 'Время компиляции',
+        cell: ({ cell })=>{
+            const dateTime = new Date(cell.getValue() * 1000);
+            const time = dateTime.toLocaleTimeString('ru-RU');
+            const date = dateTime.toLocaleDateString('ru-RU');
+            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$3$2e$3_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "text-wrap",
+                children: `${time} ${date}`
+            }, void 0, false, {
+                fileName: "[project]/src/components/tables/user-compiles.tsx",
+                lineNumber: 52,
+                columnNumber: 14
+            }, this);
+        }
     }
 ];
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {

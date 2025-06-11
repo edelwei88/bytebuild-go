@@ -26,6 +26,7 @@ export function User({ user }: { user: UserType }) {
   const roleName = {
     user: 'Пользователь',
     manager: 'Менеджер',
+    admin: 'Администратор',
   }[user.role.name];
 
   return (
@@ -68,10 +69,13 @@ export function User({ user }: { user: UserType }) {
               onClick={() => {
                 async function Logout() {
                   try {
-                    const res = await fetch('http://localhost:3001/logout', {
-                      credentials: 'include',
-                      method: 'get',
-                    });
+                    const res = await fetch(
+                      'http://localhost:3001/user/logout',
+                      {
+                        credentials: 'include',
+                        method: 'get',
+                      },
+                    );
                     if (!res.ok) {
                       toast('Неверные данные', {
                         description: 'Отказано в доступе',

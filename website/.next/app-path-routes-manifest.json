@@ -1,0 +1,16 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/favicon.ico/route": "/favicon.ico",
+  "/page": "/",
+  "/(with-header)/login/page": "/login",
+  "/(with-header)/register/page": "/register",
+  "/(with-header)/landing/page": "/landing",
+  "/app/(admin)/edit/users/page": "/app/edit/users",
+  "/app/(manager)/users/[id]/page": "/app/users/[id]",
+  "/app/(manager)/compilers/page": "/app/compilers",
+  "/app/(manager)/users/page": "/app/users",
+  "/app/compile/[id]/page": "/app/compile/[id]",
+  "/app/(manager)/compiles/page": "/app/compiles",
+  "/app/compile/page": "/app/compile",
+  "/app/mycompiles/page": "/app/mycompiles"
+}

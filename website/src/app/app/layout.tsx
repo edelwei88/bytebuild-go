@@ -14,7 +14,7 @@ export default async function RootLayout({
 }>) {
   const cookieStore = await cookies();
   const Authorization = cookieStore.get('Authorization');
-  const res = await fetch('http://localhost:3001/auth', {
+  const res = await fetch('http://localhost:3001/user/me', {
     method: 'get',
     headers: {
       Cookie: `${Authorization?.name}=${Authorization?.value}`,

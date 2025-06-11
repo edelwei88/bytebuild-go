@@ -11,7 +11,6 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useForm } from '@tanstack/react-form';
-import Link from 'next/link';
 import { z } from 'zod/v4';
 import { FieldInfo } from './field-info';
 import { toast } from 'sonner';
@@ -40,7 +39,7 @@ export function RegisterForm() {
     onSubmit: ({ value }) => {
       async function Register() {
         try {
-          const res = await fetch('http://localhost:3001/register', {
+          const res = await fetch('http://localhost:3001/auth/register', {
             headers: {
               'Content-Type': 'application/json',
             },
@@ -53,8 +52,8 @@ export function RegisterForm() {
             }),
           });
           if (!res.ok)
-            toast('Неверные данные', {
-              description: 'Вы ввели невалидные данные',
+            toast('Почта занята', {
+              description: 'Введенная электронная почта занята',
               icon: <CircleX />,
             });
           if (res.ok) {

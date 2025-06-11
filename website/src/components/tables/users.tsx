@@ -11,7 +11,7 @@ export const usersColumns: ColumnDef<User>[] = [
   },
   {
     accessorKey: 'username',
-    header: 'Username',
+    header: 'Имя пользователя',
   },
   {
     accessorKey: 'email',
@@ -19,11 +19,11 @@ export const usersColumns: ColumnDef<User>[] = [
   },
   {
     accessorKey: 'role.name',
-    header: 'Role',
+    header: 'Роль',
   },
   {
     accessorKey: 'compiles',
-    header: 'Compiles',
+    header: 'Количество компиляций',
     cell: ({ row }) => {
       const compiles: Compile[] = row.getValue('compiles');
       return <div>{compiles.length}</div>;

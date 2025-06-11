@@ -21,7 +21,6 @@ func ForAuthorized(roles []string) gin.HandlerFunc {
 
 		user, err := token.GetUserByJWT(tokenString)
 		if err != nil {
-			c.SetCookie("Authorization", "", -1, "/", "localhost", false, true)
 			c.JSON(http.StatusUnauthorized, gin.H{
 				"message": "unauthorized",
 			})
@@ -31,13 +30,14 @@ func ForAuthorized(roles []string) gin.HandlerFunc {
 
 		if !slices.Contains(roles, user.Role.Name) {
 			c.JSON(http.StatusUnauthorized, gin.H{
-				"message": "role not unauthorized",
+				"message": "your role has insufficent rights",
 			})
 			c.Abort()
 			return
 		}
 
 		c.Set("user", user)
+		c.Set("token", tokenString)
 		c.Next()
 	}
 }

@@ -1,18 +1,16 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 import { Compiler as CompilerType } from '@/types/api/compiler';
 import { Language } from '@/types/api/language';
 import { Editor } from '@monaco-editor/react';
-import { useRef, useState } from 'react';
 import { LanguageSelect } from './language-select';
 import { CompilerSelect } from './compiler-select';
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
 import { Textarea } from '../ui/textarea';
 import { Button } from '../ui/button';
-import { toast } from 'sonner';
-import { Check, CircleX } from 'lucide-react';
+import { Loader } from 'lucide-react';
+import { useCompiler } from '@/hooks/use-compiler';
 
 export function Compiler({
   languages,
@@ -31,32 +29,33 @@ export function Compiler({
   compilerRef?: CompilerType;
   languageRef?: Language;
 }) {
-  function handleEditorDidMount(editor: any) {
-    editorRef.current = editor;
-    editor.focus();
-    editor.RenderMinimap = 0;
-  }
-  function handleOnChange(value: string | undefined) {
-    if (value) setSourceCode(value);
-  }
-
-  const [sourceCode, setSourceCode] = useState(
-    sourceCodeRef ?? 'console.log("Hello, world!")',
-  );
-  const [language, setLanguage] = useState<Language>(
-    languageRef ?? languages[0],
-  );
-  const [compiler, setCompiler] = useState<CompilerType>(
-    compilerRef ?? languages[0].compilers[0],
-  );
-  const [args, setArgs] = useState(argsRef ?? '');
-  const [stdout, setStdout] = useState(stdoutRef ?? '');
-  const [stderr, setStderr] = useState(stderrRef ?? '');
-  const editorRef = useRef(null);
+  const {
+    sourceCode,
+    language,
+    setLanguage,
+    compiler,
+    setCompiler,
+    args,
+    setArgs,
+    stdout,
+    stderr,
+    isCompiling,
+    handleEditorDidMount,
+    handleOnChange,
+    compile,
+  } = useCompiler({
+    languages,
+    sourceCodeRef,
+    stdoutRef,
+    stderrRef,
+    argsRef,
+    compilerRef,
+    languageRef,
+  });
 
   return (
-    <div className='flex h-full w-full flex-1 gap-5 p-5'>
-      <div className='h-full w-1/2 overflow-clip rounded-2xl'>
+    <div className='flex h-full w-full flex-1 flex-col gap-5 p-5 md:flex-row'>
+      <div className='mb-5 h-80 w-full overflow-clip rounded-2xl md:mb-0 md:h-full md:w-1/2'>
         <Editor
           onMount={handleEditorDidMount}
           onChange={handleOnChange}
@@ -66,7 +65,7 @@ export function Compiler({
           value={sourceCode}
           options={{
             wordWrap: 'on',
-            fontSize: 20,
+            fontSize: 16,
             minimap: {
               enabled: false,
             },
@@ -77,8 +76,8 @@ export function Compiler({
           }}
         />
       </div>
-      <div className='flex h-full w-1/2 flex-col gap-5'>
-        <div className='flex h-fit gap-5'>
+      <div className='flex h-full w-full flex-col gap-5 md:w-1/2'>
+        <div className='flex h-fit flex-wrap gap-3 md:gap-5'>
           <Label className='text-xl text-white'>Язык</Label>
           <LanguageSelect
             langs={languages}
@@ -93,7 +92,7 @@ export function Compiler({
             setCompiler={setCompiler}
           />
         </div>
-        <div className='h-7/9'>
+        <div className='flex flex-1 flex-col'>
           <div>
             <Label className='mb-2 text-xl text-white'>Аргументы</Label>
             <Input
@@ -103,63 +102,37 @@ export function Compiler({
               onChange={e => setArgs(e.target.value)}
             />
           </div>
-          <div className='flex h-full flex-col'>
-            <Label className='mt-4 mb-2 text-xl text-white'>Stdout</Label>
+          <div className='flex flex-1 flex-col'>
+            <Label className='mt-4 mb-2 text-xl text-white'>
+              Стандартный вывод
+            </Label>
             <Textarea
-              className='h-full resize-none overflow-y-scroll bg-white! text-black! opacity-100!'
+              className='h-24 cursor-text! resize-none overflow-y-scroll bg-white! text-black! opacity-100! md:h-full'
               disabled
               value={stdout}
             />
-            <Label className='mt-4 mb-2 text-xl text-white'>Stderr</Label>
+            <Label className='mt-4 mb-2 text-xl text-white'>
+              Стандартный вывод ошибки
+            </Label>
             <Textarea
-              className='h-full resize-none overflow-y-scroll bg-white! text-black! opacity-100!'
+              className='h-24 cursor-text! resize-none overflow-y-scroll bg-white! text-black! opacity-100! md:h-full'
               disabled
               value={stderr}
             />
           </div>
           <div>
             <Button
-              className='mt-4 cursor-pointer text-xl'
+              className='mt-4 w-full cursor-pointer text-xl md:w-auto'
               size='lg'
-              onClick={() => {
-                async function Compile() {
-                  try {
-                    const res = await fetch('http://localhost:3001/compile', {
-                      headers: {
-                        'Content-Type': 'application/json',
-                      },
-                      credentials: 'include',
-                      method: 'post',
-                      body: JSON.stringify({
-                        language: language.name,
-                        compiler: compiler.docker_image_name,
-                        source_code: sourceCode,
-                        args: args,
-                      }),
-                    });
-                    if (!res.ok)
-                      toast('Ошибка компиляции', {
-                        description: 'Ошибка компиляции на сервере',
-                        icon: <CircleX />,
-                      });
-                    if (res.ok) {
-                      const json = await res.json();
-                      setStdout(json.stdout);
-                      setStderr(json.stderr);
-                      toast('Успешная компиляция', {
-                        duration: 1000,
-                        icon: <Check />,
-                      });
-                    }
-                  } catch (e) {
-                    toast('Неожиданная ошибка');
-                    console.log(e);
-                  }
-                }
-                Compile();
-              }}
+              onClick={compile}
             >
-              Компилировать
+              {isCompiling ? (
+                <span className='flex items-center justify-center gap-5'>
+                  Компиляция <Loader />
+                </span>
+              ) : (
+                'Компилировать'
+              )}
             </Button>
           </div>
         </div>

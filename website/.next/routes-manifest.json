@@ -1,0 +1,138 @@
+{
+  "version": 3,
+  "pages404": true,
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    },
+    {
+      "source": "/",
+      "destination": "/landing",
+      "statusCode": 308,
+      "regex": "^(?!/_next)/(?:/)?$"
+    },
+    {
+      "source": "/app",
+      "destination": "/app/compile",
+      "statusCode": 308,
+      "regex": "^(?!/_next)/app(?:/)?$"
+    }
+  ],
+  "headers": [],
+  "dynamicRoutes": [
+    {
+      "page": "/app/compile/[id]",
+      "regex": "^/app/compile/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/app/compile/(?<nxtPid>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/app/users/[id]",
+      "regex": "^/app/users/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/app/users/(?<nxtPid>[^/]+?)(?:/)?$"
+    }
+  ],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/_not-found",
+      "regex": "^/_not\\-found(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_not\\-found(?:/)?$"
+    },
+    {
+      "page": "/app/compile",
+      "regex": "^/app/compile(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/app/compile(?:/)?$"
+    },
+    {
+      "page": "/app/compilers",
+      "regex": "^/app/compilers(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/app/compilers(?:/)?$"
+    },
+    {
+      "page": "/app/compiles",
+      "regex": "^/app/compiles(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/app/compiles(?:/)?$"
+    },
+    {
+      "page": "/app/edit/users",
+      "regex": "^/app/edit/users(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/app/edit/users(?:/)?$"
+    },
+    {
+      "page": "/app/mycompiles",
+      "regex": "^/app/mycompiles(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/app/mycompiles(?:/)?$"
+    },
+    {
+      "page": "/app/users",
+      "regex": "^/app/users(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/app/users(?:/)?$"
+    },
+    {
+      "page": "/favicon.ico",
+      "regex": "^/favicon\\.ico(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/favicon\\.ico(?:/)?$"
+    },
+    {
+      "page": "/landing",
+      "regex": "^/landing(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/landing(?:/)?$"
+    },
+    {
+      "page": "/login",
+      "regex": "^/login(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/login(?:/)?$"
+    },
+    {
+      "page": "/register",
+      "regex": "^/register(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/register(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "RSC",
+    "varyHeader": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch",
+    "prefetchHeader": "Next-Router-Prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSuffix": ".prefetch.rsc",
+    "prefetchSegmentHeader": "Next-Router-Segment-Prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments"
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  },
+  "rewrites": []
+}

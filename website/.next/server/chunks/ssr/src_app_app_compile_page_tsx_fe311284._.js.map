@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["file:///Users/edelweiss/Projects/go/src/github.com/edelwei88/bytebuild-go/website/src/app/app/compile/page.tsx"],"sourcesContent":["/* eslint-disable @typescript-eslint/no-explicit-any */\n/* eslint-disable @typescript-eslint/no-unused-vars */\n'use client';\n\nimport { LangCompilerSelect } from '@/components/compiler/lang-compiler-select';\nimport { Compiler } from '@/types/api/compiler';\nimport { Language } from '@/types/api/language';\nimport { Editor } from '@monaco-editor/react';\nimport { useEffect, useRef, useState } from 'react';\n\nexport default function Page() {}\n"],"names":[],"mappings":"AAAA,qDAAqD,GACrD,oDAAoD;;;AACpD;AAQe,SAAS,QAAQ","debugId":null}}]
-}

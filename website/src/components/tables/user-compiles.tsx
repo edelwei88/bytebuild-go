@@ -10,35 +10,46 @@ export const userCompilesColumns: ColumnDef<Compile>[] = [
   },
   {
     accessorKey: 'compiler.docker_image_name',
-    header: 'Compiler',
+    header: 'Компилятор',
   },
   {
     accessorKey: 'source_code',
-    header: 'Source code',
+    header: 'Исходный код',
     cell: ({ cell }) => (
       <div className='text-wrap'>{cell.renderValue() as string}</div>
     ),
   },
   {
     accessorKey: 'args',
-    header: 'Args',
+    header: 'Аргументы',
   },
   {
     accessorKey: 'exit_code',
-    header: 'Exit code',
+    header: 'Код возврата',
   },
   {
     accessorKey: 'stdout',
-    header: 'Stdout',
+    header: 'Стандартный вывод',
     cell: ({ cell }) => (
       <div className='text-wrap'>{cell.renderValue() as string}</div>
     ),
   },
   {
     accessorKey: 'stderr',
-    header: 'Stderr',
+    header: 'Стандартный вывод ошибки',
     cell: ({ cell }) => (
       <div className='text-wrap'>{cell.renderValue() as string}</div>
     ),
+  },
+  {
+    accessorKey: 'compile_time',
+    header: 'Время компиляции',
+    cell: ({ cell }) => {
+      const dateTime = new Date((cell.getValue() as number) * 1000);
+      const time = dateTime.toLocaleTimeString('ru-RU');
+      const date = dateTime.toLocaleDateString('ru-RU');
+
+      return <div className='text-wrap'>{`${time} ${date}`}</div>;
+    },
   },
 ];

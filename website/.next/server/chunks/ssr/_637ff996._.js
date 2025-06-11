@@ -118,7 +118,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$ne
 async function Page() {
     const cookiesStore = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$3$2e$3_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$headers$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["cookies"])();
     const Authorization = cookiesStore.get('Authorization');
-    const res = await fetch('http://localhost:3001/auth', {
+    const res = await fetch('http://localhost:3001/user/me', {
         method: 'get',
         headers: {
             Cookie: `${Authorization?.name}=${Authorization?.value}`
@@ -129,7 +129,7 @@ async function Page() {
         className: "mx-auto my-5 max-w-7/9 text-white",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$3$2e$3_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$tables$2f$clickable$2d$user$2d$table$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["DataTableClickable"], {
             columns: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$tables$2f$user$2d$compiles$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["userCompilesColumns"],
-            data: json.compiles
+            data: json.compiles.sort((a, b)=>a.id - b.id)
         }, void 0, false, {
             fileName: "[project]/src/app/app/mycompiles/page.tsx",
             lineNumber: 18,

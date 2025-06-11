@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 6, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
-    {"offset": {"line": 30, "column": 0}, "map": {"version":3,"sources":["file:///Users/edelweiss/Projects/go/src/github.com/edelwei88/bytebuild-go/website/src/app/app/mycompiles/page.tsx"],"sourcesContent":["import { User } from '@/types/api/user';\n\nexport default async function Page() {\n  const res = await fetch('http://localhost:3001/auth', {\n    credentials: 'include',\n    method: 'get',\n  });\n  const json = (await res.json) as User;\n  return <div></div>;\n}\n"],"names":[],"mappings":";;;;;AAEe,eAAe;IAC5B,MAAM,MAAM,MAAM,MAAM,8BAA8B;QACpD,aAAa;QACb,QAAQ;IACV;IACA,MAAM,OAAQ,MAAM,IAAI,IAAI;IAC5B,qBAAO,6WAAC;;;;;AACV","debugId":null}}]
-}

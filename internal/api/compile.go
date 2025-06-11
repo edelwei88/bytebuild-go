@@ -2,8 +2,9 @@ package api
 
 import (
 	"net/http"
+	"time"
 
-	"github.com/edelwei88/bytebuild-go/internal/docker/compile"
+	"github.com/edelwei88/bytebuild-go/internal/docker"
 	"github.com/edelwei88/bytebuild-go/internal/postgres"
 	"github.com/edelwei88/bytebuild-go/internal/postgres/models"
 	"github.com/edelwei88/bytebuild-go/internal/types"
@@ -51,18 +52,30 @@ func Compile(c *gin.Context) {
 	var result types.ExecResult
 	switch language.Name {
 	case "Python":
-		result, err = compile.Python(compiler.DockerImageName, language.FileExtension, opts.SourceCode, opts.Args)
+		result, err = docker.Python(compiler.DockerImageName, language.FileExtension, opts.SourceCode, opts.Args)
 	case "Cpp":
-		result, err = compile.Cpp(compiler.DockerImageName, language.FileExtension, opts.SourceCode, opts.Args)
+		result, err = docker.Cpp(compiler.DockerImageName, language.FileExtension, opts.SourceCode, opts.Args)
 	case "C":
-		result, err = compile.C(compiler.DockerImageName, language.FileExtension, opts.SourceCode, opts.Args)
+		result, err = docker.C(compiler.DockerImageName, language.FileExtension, opts.SourceCode, opts.Args)
 	case "Lua":
-		result, err = compile.Lua(compiler.DockerImageName, language.FileExtension, opts.SourceCode, opts.Args)
+		result, err = docker.Lua(compiler.DockerImageName, language.FileExtension, opts.SourceCode, opts.Args)
 	case "JavaScript":
-		result, err = compile.JavaScript(compiler.DockerImageName, language.FileExtension, opts.SourceCode, opts.Args)
+		result, err = docker.JavaScript(compiler.DockerImageName, language.FileExtension, opts.SourceCode, opts.Args)
+	case "Rust":
+		result, err = docker.Rust(compiler.DockerImageName, language.FileExtension, opts.SourceCode, opts.Args)
+	case "Java":
+		result, err = docker.Java(compiler.DockerImageName, language.FileExtension, opts.SourceCode, opts.Args)
+	case "Go":
+		result, err = docker.Go(compiler.DockerImageName, language.FileExtension, opts.SourceCode, opts.Args)
+	case "Ruby":
+		result, err = docker.Ruby(compiler.DockerImageName, language.FileExtension, opts.SourceCode, opts.Args)
+	case "PHP":
+		result, err = docker.PHP(compiler.DockerImageName, language.FileExtension, opts.SourceCode, opts.Args)
+	case "Elixir":
+		result, err = docker.Elixir(compiler.DockerImageName, language.FileExtension, opts.SourceCode, opts.Args)
 	default:
 		c.JSON(http.StatusInternalServerError, gin.H{
-			"message": "failed to compile",
+			"message": "no language",
 		})
 		return
 	}
@@ -76,13 +89,14 @@ func Compile(c *gin.Context) {
 
 	user, _ := c.Get("user")
 	compile := models.Compile{
-		Compiler:   compiler,
-		User:       user.(models.User),
-		Arg:        opts.Args,
-		ExitCode:   result.ExitCode,
-		SourceCode: opts.SourceCode,
-		Stdout:     result.Stdout,
-		Stderr:     result.Stderr,
+		Compiler:    compiler,
+		User:        user.(models.User),
+		Arg:         opts.Args,
+		ExitCode:    result.ExitCode,
+		SourceCode:  opts.SourceCode,
+		Stdout:      result.Stdout,
+		Stderr:      result.Stderr,
+		CompileTime: time.Now().Unix(),
 	}
 
 	status := postgres.Postgres.Create(&compile)

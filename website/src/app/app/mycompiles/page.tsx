@@ -6,7 +6,7 @@ import { cookies } from 'next/headers';
 export default async function Page() {
   const cookiesStore = await cookies();
   const Authorization = cookiesStore.get('Authorization');
-  const res = await fetch('http://localhost:3001/auth', {
+  const res = await fetch('http://localhost:3001/user/me', {
     method: 'get',
     headers: {
       Cookie: `${Authorization?.name}=${Authorization?.value}`,
@@ -15,7 +15,10 @@ export default async function Page() {
   const json: User = await res.json();
   return (
     <div className='mx-auto my-5 max-w-7/9 text-white'>
-      <DataTableClickable columns={userCompilesColumns} data={json.compiles} />
+      <DataTableClickable
+        columns={userCompilesColumns}
+        data={json.compiles.sort((a, b) => a.id - b.id)}
+      />
     </div>
   );
 }

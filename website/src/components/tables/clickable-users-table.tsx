@@ -12,7 +12,7 @@ export function DataTableClickable<TData, TValue>({
       columns={columns}
       data={data}
       onClick={rows => {
-        r.push(`/app/users/${rows.getValue('id')}`);
+        r.push(`/app/manager/users/${rows.getValue('id')}`);
       }}
     />
   );

@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 6, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
-    {"offset": {"line": 30, "column": 0}, "map": {"version":3,"sources":["file:///Users/edelweiss/Projects/go/src/github.com/edelwei88/bytebuild-go/website/src/app/app/page.tsx"],"sourcesContent":["export default function Page() {\n  return (\n    <div>\n      <span className='text-black'>Authorized route</span>\n    </div>\n  );\n}\n"],"names":[],"mappings":";;;;;AAAe,SAAS;IACtB,qBACE,6WAAC;kBACC,cAAA,6WAAC;YAAK,WAAU;sBAAa;;;;;;;;;;;AAGnC","debugId":null}}]
-}

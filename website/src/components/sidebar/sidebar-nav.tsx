@@ -18,7 +18,7 @@ export function SidebarNav({
       {items.map(el => (
         <SidebarMenuItem key={el.name}>
           <SidebarMenuButton asChild isActive={p === el.href}>
-            <Link href={el.href} className='text-xl'>
+            <Link href={el.href} className='text-sm'>
               {el.name}
             </Link>
           </SidebarMenuButton>
